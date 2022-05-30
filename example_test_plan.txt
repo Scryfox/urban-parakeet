@@ -1,0 +1,9 @@
+TEST NAME: Example Test
+
+Open web page
+
+Click button
+
+Does popup appear?
+
+How many numbers?
