@@ -19,13 +19,22 @@ set outputFile=!outputDir!/!year!!month!!day!_!hour!.!minute!.!second!.txt
 echo Results for test plan: !testName! > !outputFile!
 echo. >> !outputFile!
 
-@REM Prompt tester for environment specs for test
+@REM Prompt tester for environment specs for test and write them to results
 for /f %%g in (!environmentFile!) do (set /p userInput=What is your %%g? && echo %%g: !userInput! >> !outputFile!)
 
 echo. >> !outputFile!
 echo. >> !outputFile!
 
 @REM For each line in the test
+
+set testFileLineCount=0
+for /f "delims=" %%g in (!testFile!) do (
+
+    set testFileContents[!testFileLineCount!]=%%g
+    set /a testFileLineCount+=1
+
+)
+
 for /f "delims=" %%g in (!testFile!) do (
 
     set currLine=%%g
